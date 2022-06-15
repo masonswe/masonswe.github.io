@@ -16,5 +16,5 @@ MasonSWE is the Software Engineering group in the Computer Science department at
 
 
 # Miscs
-- Our Google Scholar profile and publication page.
+- Our [Google Scholar](https://github.com/masonswe/masonswe.github.io/blob/main/docs/index.md) profile and publication page.
 - According to [CSRanking](http://csrankings.org/#/index?soft&us), MasonSWE is in the top 10 in Software Engineering in the US (as of June 2022).
