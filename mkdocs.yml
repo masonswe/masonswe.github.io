@@ -1,0 +1,88 @@
+site_name: GMU Software Engineering Research Group
+site_url: https://swe.gmu.edu
+site_author: GMU SWE Group Members
+copyright: '©2022 GMU SWE Research Group'
+
+nav:
+  - Home: index.md
+  - Seminar Series: seminar.md
+  - Social Events: social.md
+  - People: people.md
+
+
+theme:
+  name: 'material'
+  custom_dir: 'docs/overrides'
+  logo: 'images/sage-logo.png'
+  favicon: 'images/sage-logo.png'
+  font: false
+
+  icon:
+    admonition:
+      success: fontawesome/solid/square-rss
+      tip: fontawesome/solid/file-lines
+      example: fontawesome/solid/screwdriver-wrench
+      note: fontawesome/solid/book
+      abstract: fontawesome/solid/database
+
+
+  features:
+    - navigation.tabs
+
+  palette:
+
+    #Toggle Dark Mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: 'green'
+    accent: 'light green'
+    toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    # Toggle Light Mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: gmu
+    toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+plugins:
+    - search
+    - encryptcontent:
+        title_prefix: '[Protected]'
+        summary: 'This Content is Password Protected'
+        placeholder: 'Click here to type the Password, then press Enter'
+        decryption_failure_message: 'Invalid Password'
+        encryption_info_message: 'This course content is password protected. Please enter the password.'
+
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - toc:
+      toc_depth: 3
+  - attr_list
+  - meta
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sageselab
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/sageselab
