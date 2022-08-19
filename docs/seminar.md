@@ -3,4 +3,4 @@ hide:
   - navigation   
 ---
 
-Seminar Information will go here!
+Seminar Information will go here!!!
