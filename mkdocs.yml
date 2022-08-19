@@ -13,8 +13,8 @@ nav:
 theme:
   name: 'material'
   custom_dir: 'docs/overrides'
-  logo: 'images/sage-logo.png'
-  favicon: 'images/sage-logo.png'
+  logo: 'images/GMU-Logo-small.png'
+  favicon: 'images/GMU-Logo-small.png'
   font: false
 
   icon:
