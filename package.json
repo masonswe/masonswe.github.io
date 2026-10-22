@@ -1,0 +1,26 @@
+{
+  "name": "masonswe",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Website of MasonSWE, the Software Engineering group at George Mason University.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint src test",
+    "test": "npm run typecheck && tsx --test test/*.test.ts",
+    "check:all": "npm run lint && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.2",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}
