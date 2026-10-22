@@ -9,8 +9,20 @@
   <script type="module" src="/src/main.ts"></script>
 </head>
 <body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">George Mason University · Computer Science</p>
+      <h1>MasonSWE</h1>
+      <p class="tagline">Software Engineering research at Mason: program analysis, testing, PL, logic, security, AI/ML and HCI.</p>
+      <ul class="stats">
+        <li><strong id="faculty-count">7</strong><span>faculty</span></li>
+        <li><strong>Top 10</strong><span>US SE ranking</span></li>
+        <li><strong>#9</strong><span>CSRankings, Mar 2025</span></li>
+      </ul>
+    </div>
+  </header>
   <main>
-    <h1>About MasonSWE</h1>
+    <h2>About</h2>
     <p>
       MasonSWE is the Software Engineering (SE) group in the Computer Science department at
       <a href="https://www.gmu.edu">George Mason</a> University! We are interested in all aspects of SE research,
@@ -19,7 +31,7 @@
     <ul>
       <li>Our <a href="https://scholar.google.com/citations?hl=en&amp;user=lEa2_icAAAAJ">Google Scholar</a> profile and publication page.</li>
       <li>
-        Although our group is relatively small (<span id="faculty-count">7</span> faculty), with many working in areas beyond SE
+        Although our group is relatively small (7 faculty), with many working in areas beyond SE
         (such as HCI, Logic, and Programming Languages), we are highly active in the SE research community and regularly
         publish in leading SE conferences and journals. According to
         <a href="http://csrankings.org/#/index?soft&amp;us">CSRanking</a>, MasonSWE is in the top 10 in Software
@@ -28,7 +40,14 @@
     </ul>
 
     <h2>Faculty</h2>
-    <ol id="faculty-list"></ol>
+    <ul id="faculty-list" class="cards"></ul>
+
+    <h2>Students</h2>
+    <p class="legend"><mark>Highlighted</mark> students have not yet presented in the seminar.</p>
+    <ul id="student-list" class="cards"></ul>
+
+    <h2>SWE Seminar Schedule</h2>
+    <div id="seminars"></div>
 
     <h2>Miscs</h2>
     <ul>
