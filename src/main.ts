@@ -1,23 +1,60 @@
 import './style.css';
-import { FACULTY, STUDENTS } from './data.ts';
+import { ALUMNI, FACULTY, FORMER_FACULTY, STUDENTS } from './data.ts';
 import { SEMESTERS } from './seminars.ts';
 
-const list = document.getElementById('faculty-list');
-if (list) {
-  list.replaceChildren(
-    ...FACULTY.map(({ name, url }) => {
-      const item = document.createElement('li');
+type Line = string | { text: string; url: string; prefix?: string };
+
+/** Builds a person card: photo (or placeholder), name (linked if a URL is given), then detail lines. */
+function card(name: string, url: string | undefined, photo: string | undefined, lines: Line[]): HTMLLIElement {
+  const item = document.createElement('li');
+  const img = document.createElement('img');
+  img.src = `/people/${photo ?? 'default.svg'}`;
+  img.alt = photo ? name : '';
+  img.loading = 'lazy';
+  img.className = 'avatar';
+  const body = document.createElement('div');
+  const title = document.createElement(url ? 'a' : 'span');
+  title.className = 'name';
+  if (title instanceof HTMLAnchorElement && url) title.href = url;
+  title.textContent = name;
+  body.append(title);
+  for (const line of lines) {
+    const small = document.createElement('small');
+    if (typeof line === 'string') small.textContent = line;
+    else {
       const link = document.createElement('a');
-      link.href = url;
-      link.textContent = name;
-      item.append(link);
-      return item;
-    }),
-  );
+      link.href = line.url;
+      link.textContent = line.text;
+      small.append(line.prefix ?? '', link);
+    }
+    body.append(small);
+  }
+  item.append(img, body);
+  return item;
 }
 
-const count = document.getElementById('faculty-count');
-if (count) count.textContent = String(FACULTY.length);
+const fill = (id: string, items: HTMLLIElement[]) => document.getElementById(id)?.replaceChildren(...items);
+
+fill(
+  'faculty-list',
+  FACULTY.map(({ name, url, photo, lab }) =>
+    card(name, url, photo, lab ? [{ prefix: 'Lab: ', text: lab.name, url: lab.url }] : []),
+  ),
+);
+
+fill(
+  'former-faculty-list',
+  FORMER_FACULTY.map(({ name, url, photo, years, now }) => card(name, url, photo, [`At Mason ${years}`, now])),
+);
+
+fill(
+  'alumni-list',
+  ALUMNI.map(({ name, url, photo, advisors, year, now }) =>
+    card(name, url, photo, [`PhD ${year} · ${advisors.join(' & ')}`, ...(now ? [now] : [])]),
+  ),
+);
+
+for (const count of document.querySelectorAll('.faculty-count')) count.textContent = String(FACULTY.length);
 
 // A student has presented once a seminar in any semester, dated today or earlier, lists them as a speaker.
 const today = new Date().toISOString().slice(0, 10);
@@ -30,23 +67,15 @@ const presenters = new Set(
 const hasPresented = ({ name, aliases = [] }: { name: string; aliases?: string[] }) =>
   [name, ...aliases].some((n) => presenters.has(norm(n)));
 
-const students = document.getElementById('student-list');
-if (students) {
-  students.replaceChildren(
-    ...STUDENTS.map((student) => {
-      const { name, advisor } = student;
-      const item = document.createElement('li');
-      item.textContent = name;
-      if (!hasPresented(student)) item.classList.add('not-presented');
-      const advisorLine = document.createElement('small');
-      advisorLine.textContent = `Advisor: ${advisor}`;
-      advisorLine.style.display = 'block';
-      advisorLine.style.opacity = '0.7';
-      item.append(advisorLine);
-      return item;
-    }),
-  );
-}
+fill(
+  'student-list',
+  STUDENTS.map((student) => {
+    const advisors = [student.advisor, student.coAdvisor].filter(Boolean).join(' & ');
+    const item = card(student.name, student.url, student.photo, [`Advisor: ${advisors}`]);
+    if (!hasPresented(student)) item.classList.add('not-presented');
+    return item;
+  }),
+);
 
 const seminars = document.getElementById('seminars');
 if (seminars) {

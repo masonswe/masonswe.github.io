@@ -134,10 +134,23 @@ main > h2:first-child { margin-top: 0; }
   box-shadow: 0 6px 16px rgb(0 0 0 / 0.1);
 }
 
+.cards li { display: flex; gap: 0.75rem; align-items: center; }
+.cards .avatar {
+  flex: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+}
+.cards .name { font-weight: 600; }
 .cards a { font-weight: 600; text-decoration: none; }
 .cards a:hover { text-decoration: underline; }
 
-#student-list li { font-weight: 500; }
+#student-list .name { font-weight: 500; }
+
+.cards.former li { border-left-color: var(--border); }
+.cards small { display: block; margin-top: 0.2rem; color: var(--muted); font-weight: 400; }
 
 .table-wrap {
   overflow-x: auto;
